@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery/jquery.min.js"></script>
+    <link href="../css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <style>
+        body{
+            font-size: 12px;
+            font-family: Arial;
+        }
+        div.aliPayPageDiv{
+            text-align: center;
+            padding-bottom: 40px;
+            max-width: 1013px;
+            margin: 10px auto;
+        }
+        span.confirmMoneyText{
+            color: #4D4D4D;
+        }
+        span.confirmMoney{
+            display: block;
+            color: #FF6600;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px;
+        }
+        img.aliPayImg{
+            height: 400px;
+        }
+        button.confirmPay{
+            background-color: #00AAEE;
+            border: 1px solid #00AAEE;
+            text-align: center;
+            line-height: 31px;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            width: 107px;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="aliPayPageDiv">
+        <div>
+            <span class="confirmMoneyText">扫一扫付款（元）</span>
+            <span class="confirmMoney">
+                ￥201.00
+            </span>
+        </div>
+        <div>
+            <img src="../img/aliPay.jpg" class="aliPayImg">
+        </div>
+        <div>
+            <a href="#nowhere"><button class="confirmPay">确认支付</button></a>
+        </div>
+    </div>
+</body>
+</html>

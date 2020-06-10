@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery/jquery.min.js"></script>
+    <link href="../css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+<!--    bought.style-->
+    <style>
+        div.boughtDiv{
+            max-width: 1013px;
+            margin: 10px auto;
+        }
+        div.orderType div{
+            border-bottom: 2px solid #E8E8E8;
+            float: left;
+        }
+        div.orderType a{
+            border-right: 1px solid #E8E8E8;
+            display:inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+            padding: 0px 20px;
+            text-decoration: none;
+        }
+        div.orderType a:hover{
+            color: #C40000;
+            text-decoration: none;
+        }
+        div.orderType div.selectedOrderType{
+            border-bottom: 2px solid #C40000;
+        }
+        div.orderType div.selectedOrderType a{
+            color: #C40000;
+        }
+        div.orderTypeLastOne{
+            overflow: hidden;
+            float: none !important;
+            border-bottom: 2px solid #E8E8E8;
+            height:35px;
+        }
+        a.noRightborder{
+            border-right-width:0px !important;
+        }
+        table.orderListTitleTable{
+            border: 1px solid #E8E8E8;
+            width: 100%;
+            margin: 20px 0px;
+            background-color: #F5F5F5;
+            text-align: center;
+            font-size:12px;
+        }
+        table.orderListTitleTable td{
+            padding: 12px 0px;
+        }
+        table.orderListItemTable{
+            border: 2px solid #ECECEC;
+            width: 100%;
+            margin: 20px 0px;
+            font-size:12px;
+        }
+        table.orderListItemTable:hover{
+            border: 2px solid #aaa !important;
+        }
+        table.orderListItemTable td{
+            padding: 8px 10px;
+        }
+        tr.orderListItemFirstTR{
+            background-color: #F1F1F1;
+        }
+        td.orderItemDeleteTD{
+            text-align: right;
+        }
+        span.orderListItemDelete {
+            display: inline-block;
+            margin: 0px 10px;
+            color: #999999;
+            font-size: 16px;
+        }
+
+        td.orderItemOrderInfoPartTD div.orderListItemProductLinkOutDiv {
+            height: 80px;
+            align: left;
+            float: left;
+        }
+        div.orderListItemProductOriginalPrice{
+            color: #3C3C3C;
+            font-size: 14px;
+        }
+        td.orderListItemNumberTD{
+            text-align: center;
+        }
+        td.orderItemOrderInfoPartTD{
+            border: solid 1px #ECECEC;
+        }
+        td.orderListItemProductRealPriceTD{
+            text-align: center;
+        }
+        div.orderListItemProductRealPrice{
+            color: #3C3C3C;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        td.orderListItemButtonTD{
+            text-align: center;
+        }
+        button.orderListItemConfirm{
+            background-color: #66B6FF;
+            border-radius: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-width: 0px;
+            padding: 6px 12px;
+        }
+        button.orderListItemConfirm:hover{
+            background-color: #118ADB;
+        }
+        a{
+            color:#999;
+        }
+        a:hover{
+            text-decoration:none;
+            color: #C40000;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("a[orderStatus]").click(function(){
+                var orderStatus = $(this).attr("orderStatus");
+                if('all'==orderStatus){
+                    $("table[orderStatus]").show();
+                }
+                else{
+                    $("table[orderStatus]").hide();
+                    $("table[orderStatus="+orderStatus+"]").show();
+                }
+                $("div.orderType div").removeClass("selectedOrderType");
+                $(this).parent("div").addClass("selectedOrderType");
+            });
+            //后续添加的
+            $("a.deleteOrderLink").click(function(){
+                deleteOrderid = $(this).attr("oid");
+                deleteOrder = false;
+                $("#deleteConfirmModal").modal("show");
+            });
+            $("button.deleteConfirmButton").click(function(){
+                deleteOrder = true;
+                $("#deleteConfirmModal").modal('hide');
+            });
+            $('#deleteConfirmModal').on('hidden.bs.modal', function (e) {
+                if(deleteOrder){
+                    var page="foredeleteOrder";
+                    $.post(
+                        page,
+                        {"oid":deleteOrderid},
+                        function(result){
+                            if("success"==result){
+                                $("table.orderListItemTable[oid="+deleteOrderid+"]").hide();
+                            }
+                            else{
+                                location.href="login.jsp";
+                            }
+                        }
+                    );
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div class="boughtDiv">
+        <div class="orderType">
+            <div class="selectedOrderType">
+                <a href="#nowhere" orderStatus="all">所有订单</a>
+            </div>
+            <div>
+                <a href="#nowhere" orderStatus="waitPay">待付款</a>
+            </div>
+            <div>
+                <a href="#nowhere" orderStatus="waitDelivery">待发货</a>
+            </div>
+            <div>
+                <a href="#nowhere" orderStatus="waitConfirm">待收货</a>
+            </div>
+            <div>
+                <a class="noRightborder" href="#nowhere" orderStatus="waitReview">待评价</a>
+            </div>
+            <div class="orderTypeLastOne"></div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="orderListTitle">
+            <table class="orderListTitleTable">
+                <tbody>
+                    <tr>
+                        <td>宝贝</td>
+                        <td width="100px">单价</td>
+                        <td width="100px">数量</td>
+                        <td width="120px">实付款</td>
+                        <td width="100px">交易操作</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="orderListItem">
+            <table oid="946" orderStatus="waitConfirm" class="orderListItemTable">
+                <tbody>
+                    <tr class="orderListItemFirstTR">
+                        <td colspan="5">
+                            <b>2020-04-26 17:00:41</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>订单号: 2020042617004101</span>
+                        </td>
+                        <td class="orderItemDeleteTD">
+                            <a href="#nowhere" oid="946" class="deleteOrderLink">
+                                <span class="orderListItemDelete glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="orderItemProductInfoPartTR">
+                        <td class="orderItemProductInfoPartTD">
+                            <img src="../img/book/01.jpg" width="80" height="80">
+                        </td>
+                        <td class="orderItemProductInfoPartTD" style="text-align: left">
+                            <div class="orderListItemProductLinkOutDiv">
+                                <a href="#nowhere">深入浅出数据分析</a>
+                            </div>
+                        </td>
+                        <td class="orderItemProductInfoPartTD" width="100px">
+                            <div class="orderListItemProductOriginalPrice">58.60</div>
+                        </td>
+                        <td width="100px" class="orderListItemNumberTD orderItemOrderInfoPartTD">
+                            <span class="orderListItemNumber">1</span>
+                        </td>
+                        <td width="120px"  class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD" rowspan="1">
+                            <div class="orderListItemProductRealPrice">￥58.60</div>
+                        </td>
+                        <td width="100px" class="orderListItemButtonTD orderItemOrderInfoPartTD" rowspan="1">
+                            <a href="#nowhere">
+                                <button class="orderListItemConfirm">确认收货</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table oid="945" orderStatus="waitDelivery" class="orderListItemTable">
+                <tbody>
+                <tr class="orderListItemFirstTR">
+                    <td colspan="5">
+                        <b>2020-05-02 20:00:41</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>订单号: 2020050217004108</span>
+                    </td>
+                    <td class="orderItemDeleteTD">
+                        <a href="#nowhere" oid="945" class="deleteOrderLink">
+                            <span class="orderListItemDelete glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="orderItemProductInfoPartTR">
+                    <td class="orderItemProductInfoPartTD">
+                        <img src="../img/book/book03.jpg" width="80" height="80">
+                    </td>
+                    <td class="orderItemProductInfoPartTD" style="text-align: left">
+                        <div class="orderListItemProductLinkOutDiv">
+                            <a href="#nowhere">机器学习</a>
+                        </div>
+                    </td>
+                    <td class="orderItemProductInfoPartTD" width="100px">
+                        <div class="orderListItemProductOriginalPrice">61.40</div>
+                    </td>
+                    <td width="100px" class="orderListItemNumberTD orderItemOrderInfoPartTD">
+                        <span class="orderListItemNumber">1</span>
+                    </td>
+                    <td width="120px"  class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD" rowspan="1">
+                        <div class="orderListItemProductRealPrice">￥61.40</div>
+                    </td>
+                    <td width="100px" class="orderListItemButtonTD orderItemOrderInfoPartTD" rowspan="1">
+                        <span>待发货</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

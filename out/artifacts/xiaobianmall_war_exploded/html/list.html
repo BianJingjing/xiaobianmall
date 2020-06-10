@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="../js/jquery/jquery.min.js"></script>
+    <link href="../css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <style>
+        div.content{
+            width: 100%;
+            position:relative;
+        }
+        div.content div.headbar{
+            background-color: #DD2727;
+        }
+        div.content div.head{
+            width: 200px;
+            background-color: #C60A0A;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-left: 50px;
+            display: inline-block;
+        }
+
+        div.content a{
+            font-size: 16px;
+            color: white;
+            text-decoration:none;
+        }
+
+        div.homepageCategoryProducts{
+            width:1024px;
+            margin:0px auto;
+        }
+
+        div.categoryMenu{
+            width: 200px;
+            background-color: #e2e2e3;
+            margin-left: 50px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+        div.categoryMenu a{
+            color: #000;
+        }
+        div.categoryMenu a:hover{
+            color: lightskyblue;
+            text-decoration: none;
+        }
+
+        div.eachCategory{
+            line-height: 50px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        div.eachCategory span{
+            margin-right: 10px;
+        }
+        div.eachCategory:hover{
+            background-color: white;
+        }
+        div.headbar{
+            background-color: #DD2727;
+        }
+        div.head{
+            width: 200px;
+            background-color: #C60A0A;
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-left: 20px;
+            display: inline-block;
+        }
+
+        div.homepageCategoryProducts{
+            background-color: #F5F5F5;
+            padding: 50px 10px 50px 10px;
+            margin: 0px auto;
+            max-width: 1013px;
+        }
+        div.productItem{
+            width: 189px;
+            height: 285px;
+            border: 1px solid white;
+            background-color: white;
+            margin: 8px 4px;
+            float: left;
+            cursor: pointer;
+        }
+        div.productItem span.productItemDesc{
+            font-size: 12px;
+            color: #666666;
+            display: block;
+            padding: 16px;
+        }
+        div.productItem span.productPrice{
+            font-size: 16px;
+            color: #FF003A;
+            display: block;
+            padding-left: 16px;
+            margin-top: -10px;
+        }
+        div.productItem img{
+            width: 187px;
+            height: 190px;
+        }
+        div.productItem  img:hover{
+            opacity: 0.7;
+            filter: alpha(opacity = 70);
+        }
+        div.eachHomepageCategoryProducts{
+            margin: 0px 0px 40px 0px;
+        }
+        a.productItemDescLink{
+            display: inline-block;
+            height: 66px;
+            text-decoration:none;
+        }
+        span.categoryTitle{
+            font-size: 16px;
+            margin-left: 30px;
+            color: #646464;
+            font-weight: bold;
+        }
+        div.left-mark{
+            display: inline-block;
+            height: 20px;
+            vertical-align: top;
+            width: 5px;
+            background-color: #19C8A9;
+        }
+        img.endpng{
+            display: block;
+            width: 82px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="content">
+        <div class="headbar">
+            <div class="head ">
+                <span class="glyphicon glyphicon-th-list" style="margin-left:10px"></span>
+                <span style="margin-left:10px">商品分类</span>
+            </div>
+        </div>
+
+        <div style="position: relative">
+            <div class="categoryMenu ">
+                <div class="eachCategory" cid="83">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        教育
+                    </a>
+                </div>
+                <div class="eachCategory" cid="82">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        文艺
+                    </a>
+                </div>
+                <div class="eachCategory" cid="81">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        小说
+                    </a>
+                </div>
+                <div class="eachCategory" cid="80">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        童话
+                    </a>
+                </div>
+                <div class="eachCategory" cid="79">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        人文社科
+                    </a>
+                </div>
+                <div class="eachCategory" cid="78">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        经管
+                    </a>
+                </div>
+                <div class="eachCategory" cid="76">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        科技
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="homepageCategoryProducts" style="position: relative;left: 0;top: 0;">
+            <div class="eachHomepageCategoryProducts">
+                <div class="left-mark"></div>
+                <span class="categoryTitle">教育</span>
+                <br>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/9543.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            好先生同款墨镜孙红雷偏光男士太阳镜韩明星
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            97.50
+                        </span>
+                </div>
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/9521.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            帕莎Prsr太阳镜女偏光镜潮范冰冰同款女
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            624.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/9510.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            变色眼镜男女款半框太阳镜大框潮流防辐射防
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            170.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/9499.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            新款男士偏光太阳镜日夜两用墨镜潮运动开车
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            551.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/9499.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            新款男士偏光太阳镜日夜两用墨镜潮运动开车
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            551.00
+                        </span>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="eachHomepageCategoryProducts">
+                <div class="left-mark"></div>
+                <span class="categoryTitle">文艺</span>
+                <br>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/10192.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            新生儿婴儿提篮式安全座椅汽车用车载儿童安
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            882.00
+                        </span>
+                </div>
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/10170.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            REEBABY儿童安全座椅9个月-12岁
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            1,216.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/10159.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            好孩子汽车儿童安全座椅goodbaby9
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            1,199.40
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/10148.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            惠尔顿儿童安全座椅isofix硬接口汽车
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            1,993.60
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="https://how2j.cn/tmall/img/productSingle_middle/10148.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">[热销]
+                            惠尔顿儿童安全座椅isofix硬接口汽车
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            1,993.60
+                        </span>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <img src="../img/end.png" class="endpng" id="endpng">
+        </div>
+
+    </div>
+
+</body>
+</html>

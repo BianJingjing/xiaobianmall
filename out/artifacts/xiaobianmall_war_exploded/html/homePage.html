@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="../js/jquery/jquery.min.js"></script>
+    <link href="../css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <style>
+        div.searchDiv{
+            background-color: #C40000;
+            width: 400px;
+            margin: 50px auto;
+            padding: 1px;
+            height: 40px;
+            display: block;
+        }
+        div.searchDiv input{
+            width: 275px;
+            border: 1px solid transparent;
+            height: 36px;
+            margin: 1px;
+            outline:none;
+        }
+        div.searchDiv button{
+            width: 110px;
+            border: 1px solid transparent;
+            background-color: #C40000;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        div.searchBelow{
+            margin-top: 3px;
+            margin-left: -20px;
+        }
+        div.searchBelow span{
+            color: #999;
+        }
+        div.searchBelow a{
+            padding: 0px 20px 0px 20px;
+            font-size: 14px;
+        }
+        img.logo{
+            position: absolute;
+            left: 15px;
+            top: 30px;
+            /*z-index:-1;*/
+            width: 500px;
+            height: 150px;
+        }
+        body{
+            font-size:12px;
+            font-family:Arial;
+        }
+        a{
+            color:#999;
+        }
+        a:hover{
+            text-decoration:none;
+            color:#C40000;
+        }
+    </style>
+    <style>
+        body{
+            font-size: 12px;
+            font-family: Arial,serif;
+        }
+        a{
+            color:#999;
+        }
+        .redColor{
+            color: #C40000 !important;
+        }
+        nav.top{
+            background-color: #f2f2f2;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom:1px solid  #e7e7e7;
+        }
+        nav.top span, nav.top a{
+            color: #999;
+            margin: 0px 10px 0px 10px;
+        }
+        nav.top a:hover{
+            color: #C40000;
+            text-decoration: none;
+        }
+    </style>
+    <style>
+        div.footer{
+            margin: 0px 0px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: #e7e7e7;
+        }
+        div.footer_ensure{
+            margin-top: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        div.footer_desc{
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: #e7e7e7;
+            padding-top: 30px;
+            margin: 0px 20px;
+        }
+        div.footer_desc div.descColumn{
+            width: 25%;
+            float: left;
+            padding-left: 40px;
+        }
+        div.footer_desc div.descColumn span.descColumnTitle{
+            color: #646464;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        div.footer_desc a{
+            display: block;
+            padding-top: 3px;
+        }
+        body{
+            font-size: 12px;
+            font-family: Arial;
+        }
+        a{
+            color:#999;
+        }
+        a:hover{
+            text-decoration:none;
+            color: #C40000;
+        }
+        div.copyright{
+            background-color: black;
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-top-color: #C40000;
+            margin-top: 30px;
+        }
+        div.copyright span.slash{
+            color: white;
+        }
+        div.footer div.copyright div.white_link a{
+            color: white;
+            padding: 0px 5px;
+        }
+        div.footer div.copyright div.white_link{
+            padding: 10px 0px;
+            margin-left: 40px;
+        }
+
+        div.license span{
+            color: #A4A4A4;
+        }
+
+        img.cateye{
+            margin-left: 20px;
+        }
+    </style>
+    <style>
+        div.content{
+            width: 100%;
+            position:relative;
+        }
+        div.content div.headbar{
+            background-color: #DD2727;
+        }
+        div.content div.head{
+            width: 200px;
+            background-color: #C60A0A;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-left: 50px;
+            display: inline-block;
+        }
+
+        div.content a{
+            font-size: 16px;
+            color: white;
+            text-decoration:none;
+        }
+
+        div.categoryMenu{
+            width: 200px;
+            background-color: #e2e2e3;
+            margin-left: 50px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            float:left;
+        }
+        div.categoryMenu a{
+            color: #000;
+        }
+        div.categoryMenu a:hover{
+            color: lightskyblue;
+            text-decoration: none;
+        }
+
+        div.eachCategory{
+            line-height: 50px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        div.eachCategory span{
+            margin-right: 10px;
+        }
+        div.eachCategory:hover{
+            background-color: white;
+        }
+        div.headbar{
+            background-color: #DD2727;
+        }
+        div.head{
+            width: 200px;
+            background-color: #C60A0A;
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-left: 20px;
+            display: inline-block;
+        }
+
+        div.homepageCategoryProducts{
+            background-color: #F5F5F5;
+            padding: 20px 10px 20px 10px;
+            margin: 0px auto;
+            max-width: 1013px;
+            overflow:hidden;
+
+        }
+        div.productItem{
+            width: 189px;
+            height: 285px;
+            border: 1px solid white;
+            background-color: white;
+            margin: 8px 4px;
+            float: left;
+            cursor: pointer;
+        }
+        div.productItem span.productItemDesc{
+            font-size: 12px;
+            color: #666666;
+            display: block;
+            padding: 16px;
+        }
+        div.productItem span.productPrice{
+            font-size: 16px;
+            color: #FF003A;
+            display: block;
+            padding-left: 16px;
+            margin-top: -10px;
+        }
+        div.productItem img{
+            width: 187px;
+            height: 190px;
+        }
+        div.productItem  img:hover{
+            opacity: 0.7;
+            filter: alpha(opacity = 70);
+        }
+        div.eachHomepageCategoryProducts{
+            margin: 0px 0px 40px 0px;
+        }
+        a.productItemDescLink{
+            display: inline-block;
+            height: 66px;
+            text-decoration:none;
+        }
+        span.categoryTitle{
+            font-size: 16px;
+            margin-left: 30px;
+            color: #646464;
+            font-weight: bold;
+        }
+        div.left-mark{
+            display: inline-block;
+            height: 20px;
+            vertical-align: top;
+            width: 5px;
+            background-color: #19C8A9;
+        }
+        img.endpng{
+            display: block;
+            width: 82px;
+            margin: 0 auto;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!--navigation-->
+    <nav class="top ">
+        <a href="#nowhere">
+            <span class="glyphicon glyphicon-home redColor"></span>
+            小边书城首页
+        </a>
+
+        <span>欢迎来到小边书城</span>
+        <a href="#nowhere">请登录</a>
+        <a href="#nowhere">免费注册</a>
+
+        <span class="pull-right">
+                <a href="#nowhere">我的订单</a>
+                <a href="#nowhere">
+                <span class=" glyphicon glyphicon-shopping-cart redColor" ></span>
+                购物车<strong>0</strong>件</a>
+        </span>
+
+    </nav>
+    <!--searchBar-->
+    <div>
+<!--        <a href="#nowhere"> <img class="logo" src="../img/logo.png" id="logo">-->
+<!--        </a>-->
+
+        <div class="searchDiv">
+            <input type="text" placeholder="小王子" name="keyword">
+            <button class="searchButton" type="submit">搜索</button>
+            <div class="searchBelow">
+                    <span> <a href="#nowhere"> 毛泽东早期文稿 </a> <span>|</span>
+                    </span> <span> <a href="#nowhere"> 笑场 </a> <span>|</span>
+                    </span> <span> <a href="#nowhere"> 普京传 </a></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!--content-->
+    <div class="content">
+        <div class="headbar">
+            <div class="head ">
+                <span class="glyphicon glyphicon-th-list" style="margin-left:10px"></span>
+                <span style="margin-left:10px">商品分类</span>
+            </div>
+        </div>
+
+        <div style="position: relative">
+            <div class="categoryMenu ">
+                <div class="eachCategory" cid="83">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        教育
+                    </a>
+                </div>
+                <div class="eachCategory" cid="82">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        文艺
+                    </a>
+                </div>
+                <div class="eachCategory" cid="81">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        小说
+                    </a>
+                </div>
+                <div class="eachCategory" cid="80">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        童话
+                    </a>
+                </div>
+                <div class="eachCategory" cid="79">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        人文社科
+                    </a>
+                </div>
+                <div class="eachCategory" cid="78">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        经管
+                    </a>
+                </div>
+                <div class="eachCategory" cid="76">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="#nowhere">
+                        科技
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="homepageCategoryProducts" style="position: relative;left: 0;top: 0;">
+            <div class="eachHomepageCategoryProducts">
+<!--                <div class="left-mark"></div>-->
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book05.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                八百万种死法（作者获“爱伦·坡终身大师奖”）
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            24.90
+                        </span>
+                </div>
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book06.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                高等数学（第七版）（上册）
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            45.50
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book08.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                经济学（微观部分）（经济科学译丛）
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            110.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book09.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                乖，摸摸头2.0（专享100%大冰签名！）
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            19.80
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book10.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                三体：全三册 刘慈欣，亚洲首部“雨果奖”获奖作品！
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            49.00
+                    </span>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="eachHomepageCategoryProducts">
+<!--                <div class="left-mark"></div>-->
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book01.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                大开眼界科普玩具书：探秘机器人世界
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            82.00
+                        </span>
+                </div>
+
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book02.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                我的邻居鳄鱼巴鲁波(平)
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            66.00
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book03.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                机器学习
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            61.40
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/book04.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                薛兆丰经济学讲义
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            40.60
+                        </span>
+                </div>
+                <div class="productItem">
+                    <a href="#nowhere"><img width="100px" src="../img/book/01.jpg"></a>
+                    <a href="#nowhere" class="productItemDescLink">
+                            <span class="productItemDesc">
+                                深入浅出数据分析
+                            </span>
+                    </a>
+                    <span class="productPrice">
+                            58.60
+                        </span>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <img src="../img/end.png" class="endpng" id="endpng">
+        </div>
+
+    </div>
+
+
+
+    <!--footer-->
+    <div style="display: block;" class="footer" id="footer">
+        <div class="footer_ensure" id="footer_ensure">
+            <a href="#nowhere">
+                <img src="../img/ensure.png">
+            </a>
+        </div>
+        <div class="footer_desc" id="footer_desc">
+            <div class="descColumn">
+                <span class="descColumnTitle">购物指南</span>
+                <a href="#nowhere">免费注册</a>
+                <a href="#nowhere">开通支付宝</a>
+                <a href="#nowhere">支付宝充值</a>
+            </div>
+            <div class="descColumn">
+                <span class="descColumnTitle">购物保障</span>
+                <a href="#nowhere">发票保障</a>
+                <a href="#nowhere">售后规则</a>
+                <a href="#nowhere">缺货赔付</a>
+            </div>
+            <div class="descColumn">
+                <span class="descColumnTitle">支付方式</span>
+                <a href="#nowhere">快捷支付</a>
+                <a href="#nowhere">信用卡</a>
+                <a href="#nowhere">蚂蚁花呗</a>
+                <a href="#nowhere">货到付款</a>
+            </div>
+            <div class="descColumn">
+                <span class="descColumnTitle">商家服务</span>
+                <a href="#nowhere">商家入驻</a>
+                <a href="#nowhere">商家中心</a>
+                <a href="#nowhere">物流服务</a>
+                <a href="#nowhere">运营服务</a>
+            </div>
+
+        </div>
+        <div style="clear:both"></div>
+        <div class="copyright" id="copyright">
+            <div class="white_link">
+                <a href="#nowhere">关于天猫</a>
+                <a href="#nowhere"> 帮助中心</a>
+                <a href="#nowhere">联系方式</a>
+                <a href="#nowhere">网站合作</a>
+            </div>
+
+            <div class="white_link">
+                <a href="#nowhere"> 阿里巴巴集团</a><span class="slash">|</span>
+                <a href="#nowhere"> 淘宝网</a><span class="slash">|</span>
+                <a href="#nowhere">天猫 </a><span class="slash">|</span>
+                <a href="#nowhere">  聚划算</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
